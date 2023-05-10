@@ -17,10 +17,10 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
-  await deploy("YourContract", {
+  await deploy("LockBox", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    // args: [ "Hello", ethers.utils.parseEther("1.5") ],
+    // args: [86400], // lock for 24 hours.
     log: true,
     // waitConfirmations: 5,
   });
@@ -78,4 +78,4 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
     console.error("Verification Error =>", error);
   }
 };
-module.exports.tags = ["YourContract"];
+module.exports.tags = ["LockBox"];

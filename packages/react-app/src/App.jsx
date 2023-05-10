@@ -53,7 +53,7 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
-const initialNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, goerli, xdai, mainnet)
+const initialNetwork = NETWORKS.goerli; // <------- select your target frontend network (localhost, goerli, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -327,7 +327,19 @@ function App(props) {
       <Switch>
         <Route exact path="/">
           {/* pass in any web3 props to this Home component. For example, yourLocalBalance */}
-          <Home yourLocalBalance={yourLocalBalance} readContracts={readContracts} />
+          <Home
+            yourLocalBalance={yourLocalBalance}
+            readContracts={readContracts}
+            writeContracts={writeContracts}
+            tx={tx}
+            price={price}
+            signer={userSigner}
+            address={address}
+            blockExplorer={blockExplorer}
+            contractConfig={contractConfig}
+            provider={localProvider}
+            gasPrice={gasPrice}
+          />
         </Route>
         <Route exact path="/debug">
           {/*
@@ -337,7 +349,7 @@ function App(props) {
             */}
 
           <Contract
-            name="YourContract"
+            name="LockBox"
             price={price}
             signer={userSigner}
             provider={localProvider}
